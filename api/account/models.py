@@ -4,8 +4,8 @@ from django.contrib.auth.models import UserManager, AbstractBaseUser, Permission
 from django.db import models
 from .manager import CustomerUserManager
 
-GENDER_CHOICES = (('M', 'Masculino'),
-                  ('F', 'Feminino'))
+GENDER_CHOICES = ((1, 'Masculino'),
+                  (2, 'Feminino'))
 
 
 class CustomerAbstractUser(AbstractBaseUser, PermissionsMixin):

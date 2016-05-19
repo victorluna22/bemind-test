@@ -2,6 +2,9 @@ from django.shortcuts import render
 from rest_framework_jwt.views import JSONWebTokenAPIView, JSONWebTokenSerializer
 from rest_framework_jwt.settings import api_settings
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
+from .models import Customer
 from .serializers import CustomerSerializer
 from rest_framework import status
 
@@ -26,3 +29,11 @@ class ObtainAuthToken(JSONWebTokenAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.filter(is_active=1).order_by('-id')
+    serializer_class = CustomerSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def destroy(self, request, pk=None, *args, **kwargs):
+        super(CustomerViewSet, self).destroy(request, pk)
+        return Response({'detail': 'Registro removido com sucesso'})
