@@ -8,10 +8,23 @@
  * Controller of the bemindApp
  */
 angular.module('bemindApp')
-  .controller('CustomerCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('CustomerCtrl', function ($scope, api) {
+    
+  	$scope.users = [];
+
+  	$scope.getUsers = function(){
+  		api.getUsers(function(result){
+  			$scope.users = result;
+  		});
+  	};
+
+  	$scope.register = function(){
+  		console.log($scope.customer);
+  		api.register($scope.customer, function(result){
+  			$scope.customer = null;
+  		});
+  	}
+
+  	$scope.getUsers();
+
   });

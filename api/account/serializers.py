@@ -7,7 +7,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ('id', 'first_name', 'last_name', 'email', 'password', 'phone', 'cpf', 'gender')
+        fields = ('id', 'first_name', 'last_name', 'email', 'password')
 
     def update(self, attrs, instance=None):
         user = super(CustomerSerializer, self).update(attrs, instance)

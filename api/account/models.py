@@ -25,9 +25,6 @@ class CustomerAbstractUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Customer(CustomerAbstractUser):
-    phone = models.CharField('Telefone', max_length=15, null=True, blank=True)
-    cpf = models.CharField('CPF', max_length=14, null=True, blank=True)
-    gender = models.IntegerField('Sexo', choices=GENDER_CHOICES, null=True, blank=True)
 
     objects = CustomerUserManager()
 

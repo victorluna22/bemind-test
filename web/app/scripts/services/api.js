@@ -19,9 +19,6 @@ angular.module('bemindApp')
     var client = ApiConfig.CLIENT;
     var storage = $window.localStorage;
 
-    api.lookup = function (token, cb) {
-        cb({status: 200, name: 'Victor'});
-    };
 
     api.login = function (email, password, cb) {
         $http.post(apiUrl + '/login/', {email:email, password:password}, {headers: {}})
@@ -35,41 +32,27 @@ angular.module('bemindApp')
         });
     };
 
-    api.register = function(data, cb){
-      cb('to do');
-    };
-    
 
-    api.getCities = function(id, cb){
-      $http.get(apiUrl + '/cities/'+id+'/', {headers: {'Authorization': 'JWT '+storage.getItem('Step_UserToken')}})
+    api.getUsers = function(cb){
+      $http.get(apiUrl + '/users/', {headers: {'Authorization': 'JWT '+storage.getItem('Step_UserToken')}})
         .then(function (data) {
           cb(data.data);
         }, function (error) {
-          console.warn('Error getCities: ', error);
+          console.warn('Error getUsers: ', error);
           cb([]);
       });
-    };
+    }
 
-    api.getStates = function(cb){
-      $http.get(apiUrl + '/states/', {headers: {'Authorization': 'JWT '+storage.getItem('Step_UserToken')}})
+    api.register = function (user, cb) {
+        $http.post(apiUrl + '/users/', {email: user.email, password: user.password, first_name: user.first_name, last_name: user.last_name}, {headers: {'Authorization': 'JWT '+storage.getItem('Step_UserToken')}})
         .then(function (data) {
           cb(data.data);
         }, function (error) {
-          console.warn('Error getStates: ', error);
-          cb([]);
-      });
-    };
-
-    api.getAddressByCEP = function(cep, cb){
-      $http.get(apiUrl + '/geocoder/location/?cep='+cep, {headers: {'Authorization': 'JWT '+storage.getItem('Step_UserToken')}})
-        .then(function (data) {
-          cb(data.data);
-        }, function (error) {
-          console.warn('Error getAddress: ', error);
+          console.warn('Error register: ', error.data.non_field_errors[0]);
           cb(false);
-      });
+          
+        });
     };
-
 
     return api;
 });

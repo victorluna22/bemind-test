@@ -10,7 +10,7 @@ angular.module('bemindApp')
             var a = this;
             api.login(email, password, function (result) {
 
-                if (result && result.user_type && result.user_type != 'consumer') {
+                if (result) {
                     localStorage.setItem('user', '{ "email" : "'+email+'" }');
                     $rootScope.user = result.user;
                     a.setToken(result.token);

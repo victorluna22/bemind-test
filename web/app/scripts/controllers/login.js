@@ -13,12 +13,6 @@ angular.module('bemindApp')
     $rootScope.logged_in = auth.isAuthenticated();
     $scope.email = 'victorluna22+2@gmail.com';
     $scope.password = 'v183729465';
-    // if (!$rootScope.logged_in){
-    //   $rootScope.login_screen = true;  
-    // }
-    // this.login = 1;
-    // this.register = 0;
-    // this.forgot = 0;
     var original;
     
     // original = angular.copy($rootScope.login_user);
@@ -30,7 +24,7 @@ angular.module('bemindApp')
             if (result) {
             	console.log(result);
                 // growlService.growl('Bem vindo!', 'success');
-                // $state.transitionTo('home');
+                // $location.path( "/customer" );
             } else {
                // growlService.growl('There was an error processing the request. Try again', 'danger');
            }
