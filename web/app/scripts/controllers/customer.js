@@ -25,6 +25,13 @@ angular.module('bemindApp')
   		});
   	}
 
+  	$scope.remove = function(id){
+  		console.log(id);
+  		api.remove(id, function(result){
+  			$scope.getUsers();
+  		});
+  	}
+
   	$scope.getUsers();
 
   });

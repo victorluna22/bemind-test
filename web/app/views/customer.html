@@ -4,11 +4,13 @@
   	<td>Nome</td>
   	<td>Sobrenome</td>
   	<td>Email</td>
+  	<td>Remover</td>
   </tr>
   <tr ng-repeat="user in users">
   	<td>{{ user.first_name }}</td>
   	<td>{{ user.last_name }}</td>
   	<td>{{ user.email }}</td>
+  	<td><button type="button" ng-click="remove(user.id)" class="btn btn-danger">Remover</button></td>
   </tr>
 </table>
 

@@ -54,5 +54,16 @@ angular.module('bemindApp')
         });
     };
 
+    api.remove = function (id, cb) {
+        $http.delete(apiUrl + '/users/'+id+'/', {headers: {'Authorization': 'JWT '+storage.getItem('Step_UserToken')}})
+        .then(function (data) {
+          cb(data.data);
+        }, function (error) {
+          console.warn('Error register: ', error.data.non_field_errors[0]);
+          cb(false);
+          
+        });
+    };
+
     return api;
 });
