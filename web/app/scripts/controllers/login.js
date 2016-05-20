@@ -14,6 +14,8 @@ angular.module('bemindApp')
     $scope.email = 'victorluna22+2@gmail.com';
     $scope.password = 'v183729465';
     var original;
+
+    if ($rootScope.logged_in) $location.path( "/customer" );;
     
     // original = angular.copy($rootScope.login_user);
     
@@ -24,7 +26,7 @@ angular.module('bemindApp')
             if (result) {
             	console.log(result);
                 // growlService.growl('Bem vindo!', 'success');
-                // $location.path( "/customer" );
+                $location.path( "/customer" );
             } else {
                // growlService.growl('There was an error processing the request. Try again', 'danger');
            }
