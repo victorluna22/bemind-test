@@ -167,5 +167,6 @@ CORS_ALLOW_HEADERS = (
     )
 CORS_ORIGIN_WHITELIST = (
         'localhost',
+        'localhost:9000',
         '127.0.0.1'
     )
