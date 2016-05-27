@@ -9,7 +9,7 @@
 * `$ python manage.py migrate`
 * `$ python manage.py runserver`
 
-## Installation API
+## Installation Web application
 
 * `$ cd web/`
 * `$ npm install -g bower`
